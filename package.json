@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "json-server": "json-server --watch db.json --port 3001"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -17,6 +18,7 @@
     "@mui/material": "^6.3.0",
     "@tanstack/react-query": "^5.62.10",
     "@tanstack/router": "0.0.1-beta.53",
+    "json-server": "1.0.0-beta.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "zustand": "^5.0.2"
