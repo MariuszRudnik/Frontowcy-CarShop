@@ -1,6 +1,6 @@
-import React from 'react';
 import carscreen from '../../screen/car.png';
 import { Box, Typography, Button, Container } from '@mui/material';
+import { Link } from '@tanstack/react-router';
 
 const HomePage = () => {
   return (
@@ -31,15 +31,17 @@ const HomePage = () => {
         <Typography variant="h5" color="textSecondary" gutterBottom>
           Stwórz wymarzony samochód, wybierając spośród szerokiej gamy opcji.
         </Typography>
-        <Button
-          variant="contained"
-          color="primary"
-          size="large"
-          sx={{ mt: 4 }}
-          href="/creator"
-        >
-          Rozpocznij konfigurację
-        </Button>
+
+        <Link to="/categories/$paramsId" params={{ paramsId: '1' }}>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            sx={{ mt: 4 }}
+          >
+            Rozpocznij konfigurację
+          </Button>
+        </Link>
       </Container>
     </Box>
   );
