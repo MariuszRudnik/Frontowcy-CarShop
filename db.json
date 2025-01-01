@@ -1,0 +1,125 @@
+{
+  "categories": [
+    {
+      "id": "1",
+      "name": "Podstawowe",
+      "identifier": "basic",
+      "position": 1,
+      "description": "Podstawowe elementy wyposażenia pojazdu",
+      "createdAt": "2025-01-01T12:00:00Z"
+    },
+    {
+      "id": "2",
+      "name": "Wyposażenie dodatkowe",
+      "identifier": "additional",
+      "position": 2,
+      "description": "Dodatkowe opcje poprawiające komfort i wygląd",
+      "createdAt": "2025-01-02T12:00:00Z"
+    },
+    {
+      "id": "3",
+      "name": "Kolory nadwozia",
+      "identifier": "colors",
+      "position": 3,
+      "description": "Opcje kolorystyczne nadwozia",
+      "createdAt": "2025-01-03T12:00:00Z"
+    }
+  ],
+  "parts": [
+    {
+      "id": "1",
+      "name": "Standardowe fotele",
+      "price": 500,
+      "partId": "standard-seats",
+      "category": "basic",
+      "stock": 10,
+      "customizable": false,
+      "imageUrl": "https://example.com/images/standard-seats.png",
+      "createdAt": "2025-01-01T14:00:00Z"
+    },
+    {
+      "id": "2",
+      "name": "Sportowe fotele",
+      "price": 1500,
+      "partId": "sport-seats",
+      "category": "basic",
+      "stock": 5,
+      "customizable": true,
+      "imageUrl": "https://example.com/images/sport-seats.png",
+      "createdAt": "2025-01-01T15:00:00Z"
+    },
+    {
+      "id": "3",
+      "name": "Otwierany dach",
+      "price": 1000,
+      "partId": "opening-roof",
+      "category": "additional",
+      "stock": 3,
+      "customizable": true,
+      "imageUrl": "https://example.com/images/opening-roof.png",
+      "createdAt": "2025-01-02T14:00:00Z"
+    },
+    {
+      "id": "4",
+      "name": "Lakier metalik",
+      "price": 1200,
+      "partId": "metallic-paint",
+      "category": "colors",
+      "stock": 8,
+      "customizable": true,
+      "imageUrl": "https://example.com/images/metallic-paint.png",
+      "createdAt": "2025-01-03T10:00:00Z"
+    },
+    {
+      "id": "5",
+      "name": "Lakier matowy",
+      "price": 2000,
+      "partId": "matte-paint",
+      "category": "colors",
+      "stock": 2,
+      "customizable": true,
+      "imageUrl": "https://example.com/images/matte-paint.png",
+      "createdAt": "2025-01-03T11:00:00Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": "1",
+      "firstName": "Jan",
+      "lastName": "Kowalski",
+      "email": "jan.kowalski@example.com",
+      "value": 3700,
+      "details": "Sportowe fotele, Otwierany dach, Lakier metalik",
+      "status": "completed",
+      "createdAt": "2025-01-04T10:00:00Z"
+    },
+    {
+      "id": "2",
+      "firstName": "Anna",
+      "lastName": "Nowak",
+      "email": "anna.nowak@example.com",
+      "value": 2500,
+      "details": "Standardowe fotele, Lakier matowy",
+      "status": "processing",
+      "createdAt": "2025-01-05T11:00:00Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "email": "admin@example.com",
+      "role": "admin",
+      "password": "admin123",
+      "createdAt": "2025-01-01T09:00:00Z"
+    },
+    {
+      "id": "2",
+      "username": "janek",
+      "email": "janek@example.com",
+      "role": "user",
+      "password": "janek2025",
+      "createdAt": "2025-01-02T09:00:00Z"
+    }
+  ]
+}

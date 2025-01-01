@@ -1,14 +1,14 @@
 import { createFileRoute } from '@tanstack/react-router';
-import HomePage from '../pages/HomePage/HomePage.tsx';
+import CategoryPage from '../pages/Creator/Cateogy.tsx';
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute('/creator')({
   component: RouteComponent,
 });
 
 function RouteComponent() {
   return (
     <div>
-      <HomePage />
+      <CategoryPage />
     </div>
   );
 }
