@@ -1,50 +1,50 @@
-# React + TypeScript + Vite
+# CarShop - Kreator Zamówień Samochodów
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Opis projektu
 
-Currently, two official plugins are available:
+CarShop to aplikacja webowa pozwalająca na skonfigurowanie i złożenie zamówienia na samochód według indywidualnych preferencji użytkownika. Projekt został stworzony jako ćwiczenie  mające na celu wykorzystanie narzędzi takich jak React, Material UI oraz json-server.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Funkcjonalności
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. **Zarządzanie kategoriami i częściami**:
+    - Dodawanie i usuwanie kategorii.
+    - Dodawanie i usuwanie części w kategoriach.
 
-- Configure the top-level `parserOptions` property like this:
+2. **Kreator zamówienia**:
+    - Przejście przez kolejne kroki kreatora w określonej kolejności.
+    - Możliwość cofania się do wcześniejszych kroków.
+    - Wybór części z każdej kategorii (przynajmniej jednej).
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+3. **Zarządzanie stanem aplikacji**:
+    - Globalny stan aplikacji zarządzany za pomocą Zustand.
+    - Przechowywanie konfiguracji zamówienia w local storage.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+4. **Podsumowanie i zapis zamówienia**:
+    - Formularz z danymi osobowymi użytkownika.
+    - Podgląd i zapis zamówienia z jego szczegółami do bazy danych.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+5. **Lista zamówień**:
+    - Wyświetlenie wszystkich konfiguracji z danymi użytkownika, listą części oraz całkowitą wartością zamówienia.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+---
+
+## Wykorzystane technologie
+
+- **React** - Biblioteka do budowy interfejsów użytkownika.
+- **json-server** - Narzędzie do symulacji API.
+- **Material UI** - Biblioteka komponentów UI.
+- ** Zustand** - Zarządzanie stanem aplikacji.
+- **React Query** - Optymalne zarządzanie danymi i ich pobieranie.
+- **Husky** - Narzędzie do automatyzacji formatowania kodu.
+
+---
+
+## Instalacja i uruchomienie
+
+### Wymagania wstępne:
+- Node.js w wersji 18 lub nowszej.
+- Zainstalowane narzędzie  `npm`, `pnpm` lub `yarn`.
+
+

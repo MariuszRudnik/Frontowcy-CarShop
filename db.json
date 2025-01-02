@@ -34,7 +34,6 @@
       "category": "basic",
       "stock": 10,
       "customizable": false,
-      "imageUrl": "https://example.com/images/standard-seats.png",
       "createdAt": "2025-01-01T14:00:00Z"
     },
     {
@@ -45,7 +44,7 @@
       "category": "basic",
       "stock": 5,
       "customizable": true,
-      "imageUrl": "https://example.com/images/sport-seats.png",
+
       "createdAt": "2025-01-01T15:00:00Z"
     },
     {
@@ -56,7 +55,7 @@
       "category": "additional",
       "stock": 3,
       "customizable": true,
-      "imageUrl": "https://example.com/images/opening-roof.png",
+
       "createdAt": "2025-01-02T14:00:00Z"
     },
     {
@@ -67,7 +66,7 @@
       "category": "colors",
       "stock": 8,
       "customizable": true,
-      "imageUrl": "https://example.com/images/metallic-paint.png",
+
       "createdAt": "2025-01-03T10:00:00Z"
     },
     {
@@ -78,7 +77,6 @@
       "category": "colors",
       "stock": 2,
       "customizable": true,
-      "imageUrl": "https://example.com/images/matte-paint.png",
       "createdAt": "2025-01-03T11:00:00Z"
     }
   ],

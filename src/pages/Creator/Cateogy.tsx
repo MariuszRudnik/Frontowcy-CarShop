@@ -15,9 +15,9 @@ const CategoryPage = ({ children }: Props) => {
           Konfigurator kategorii
         </Typography>
 
-        <Grid container spacing={2}>
+        <Grid container spacing={1}>
           <Box>
-            <img src={carscreen} alt="" />
+            <img src={carscreen} alt="" style={{ maxWidth: '100%' }} />
           </Box>
           <Box>{children}</Box>
         </Grid>
