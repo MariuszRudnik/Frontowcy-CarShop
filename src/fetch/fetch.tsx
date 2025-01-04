@@ -94,3 +94,11 @@ export const fetchCategory = async (
 
   return { category, totalCategories };
 };
+
+export const fetchCategories = async (): Promise<SingleCategory[]> => {
+  const response = await fetch(`${BASE_URL}/categories`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch categories.');
+  }
+  return response.json();
+};
