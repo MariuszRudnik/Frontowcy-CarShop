@@ -9,6 +9,7 @@ export const Route = createFileRoute('/categories/$steepId')({
 
 function RouteComponent() {
   const { steepId } = Route.useParams();
+
   return (
     <>
       <CategoryPage>

@@ -32,7 +32,7 @@ const HomePage = () => {
           Stwórz wymarzony samochód, wybierając spośród szerokiej gamy opcji.
         </Typography>
 
-        <Link to="/categories/$paramsId" params={{ paramsId: '1' }}>
+        <Link to="/categories/$steepId" params={{ steepId: 'basic' }}>
           <Button
             variant="contained"
             color="primary"

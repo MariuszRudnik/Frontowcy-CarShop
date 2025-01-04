@@ -1,7 +1,6 @@
-import * as React from 'react';
-import { Outlet, createRootRoute, Link } from '@tanstack/react-router';
-import { Suspense } from 'react';
-import { AppBar, Box, Toolbar, Typography } from '@mui/material';
+import React, { Suspense } from 'react';
+import { Outlet, createRootRoute } from '@tanstack/react-router';
+import { Navbar } from '../components/Navbar';
 
 const TanStackRouterDevtools = import.meta.env.DEV
   ? React.lazy(() =>
@@ -17,22 +16,12 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <React.StrictMode>
-      <Box sx={{ flexGrow: 1 }}>
-        <Link to="/">
-          <AppBar position="static">
-            <Toolbar>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                CarShop
-              </Typography>
-            </Toolbar>
-          </AppBar>
-        </Link>
-      </Box>
+    <>
+      <Navbar />
       <Outlet />
       <Suspense>
         {TanStackRouterDevtools && <TanStackRouterDevtools />}
       </Suspense>
-    </React.StrictMode>
+    </>
   );
 }
