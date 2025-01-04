@@ -2,13 +2,5 @@ import { createFileRoute } from '@tanstack/react-router';
 import HomePage from '../pages/HomePage/HomePage.tsx';
 
 export const Route = createFileRoute('/')({
-  component: RouteComponent,
+  component: HomePage,
 });
-
-function RouteComponent() {
-  return (
-    <div>
-      <HomePage />
-    </div>
-  );
-}

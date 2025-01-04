@@ -14,7 +14,7 @@ export const Navbar = () => {
               <Link to="/">
                 <Button color="inherit">Strona główna</Button>
               </Link>
-              <Link to="/categories/$paramsId" params={{ paramsId: '1' }}>
+              <Link to="/categories/$steepId" params={{ steepId: 'basic' }}>
                 <Button color="inherit">Konfiguracja</Button>
               </Link>
               <Link to="/creator">

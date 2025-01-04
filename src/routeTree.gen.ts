@@ -12,6 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
+import { Route as CreatorIndexImport } from './routes/creator/index'
 import { Route as CategoriesSteepIdImport } from './routes/categories/$steepId'
 
 // Create/Update Routes
@@ -19,6 +20,12 @@ import { Route as CategoriesSteepIdImport } from './routes/categories/$steepId'
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CreatorIndexRoute = CreatorIndexImport.update({
+  id: '/creator/',
+  path: '/creator/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -46,6 +53,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategoriesSteepIdImport
       parentRoute: typeof rootRoute
     }
+    '/creator/': {
+      id: '/creator/'
+      path: '/creator'
+      fullPath: '/creator'
+      preLoaderRoute: typeof CreatorIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -54,36 +68,41 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/categories/$steepId': typeof CategoriesSteepIdRoute
+  '/creator': typeof CreatorIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/categories/$steepId': typeof CategoriesSteepIdRoute
+  '/creator': typeof CreatorIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/categories/$steepId': typeof CategoriesSteepIdRoute
+  '/creator/': typeof CreatorIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/categories/$steepId'
+  fullPaths: '/' | '/categories/$steepId' | '/creator'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/categories/$steepId'
-  id: '__root__' | '/' | '/categories/$steepId'
+  to: '/' | '/categories/$steepId' | '/creator'
+  id: '__root__' | '/' | '/categories/$steepId' | '/creator/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CategoriesSteepIdRoute: typeof CategoriesSteepIdRoute
+  CreatorIndexRoute: typeof CreatorIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CategoriesSteepIdRoute: CategoriesSteepIdRoute,
+  CreatorIndexRoute: CreatorIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,7 +116,8 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/categories/$steepId"
+        "/categories/$steepId",
+        "/creator/"
       ]
     },
     "/": {
@@ -105,6 +125,9 @@ export const routeTree = rootRoute
     },
     "/categories/$steepId": {
       "filePath": "categories/$steepId.tsx"
+    },
+    "/creator/": {
+      "filePath": "creator/index.tsx"
     }
   }
 }
