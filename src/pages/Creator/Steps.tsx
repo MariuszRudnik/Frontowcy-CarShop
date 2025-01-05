@@ -2,6 +2,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { categoriesQuery } from '../../routes/categories/-loader';
 import { usePartsByCategoryIdentifier } from '../../fetch/fetch.tsx';
 import { Button } from '@mui/material';
+import NextAndPrevComponent from './NextAndPrevComponent.tsx';
 
 interface Props {
   steep: string;
@@ -12,6 +13,7 @@ const Steps = ({ steep }: Props) => {
   const filteredCategory = data?.filter(
     (category) => category.identifier === steep
   );
+
   const {
     data: parts,
     isLoading,
@@ -36,6 +38,7 @@ const Steps = ({ steep }: Props) => {
           </Button>
         ))}
       </div>
+      <NextAndPrevComponent categories={data} />
     </div>
   );
 };
