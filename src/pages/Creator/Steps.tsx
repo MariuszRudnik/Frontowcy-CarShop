@@ -1,9 +1,9 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { categoriesQuery } from '../../routes/categories/-loader';
 import { usePartsByCategoryIdentifier } from '../../fetch/fetch.tsx';
-import { Button } from '@mui/material';
 import NextAndPrevComponent from './NextAndPrevComponent.tsx';
-
+import styles from './CreatorStyle.module.scss';
+import ListParts from './ListParts.tsx';
 interface Props {
   steep: string;
 }
@@ -24,19 +24,8 @@ const Steps = ({ steep }: Props) => {
   return (
     <div>
       <h1>{filteredCategory[0]?.name}</h1>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '10px',
-          margin: '10px',
-        }}
-      >
-        {parts?.map((part) => (
-          <Button variant="outlined" key={part.id}>
-            {part.name}
-          </Button>
-        ))}
+      <div className={styles.columnLayout}>
+        <ListParts parts={parts} />
       </div>
       <NextAndPrevComponent categories={data} />
     </div>

@@ -37,7 +37,7 @@ export const useCategory = (id: string) => {
   });
 };
 
-interface Part {
+export interface Part {
   id: string;
   name: string;
   price: number;
@@ -73,29 +73,6 @@ interface Category {
   description: string;
 }
 
-interface CategoryResponse {
-  category: Category;
-  totalCategories: number;
-}
-
-export const fetchCategory = async (
-  identifier: string
-): Promise<CategoryResponse> => {
-  const response = await fetch(`${BASE_URL}/categories/${identifier}`);
-  if (!response.ok) {
-    throw new Error('Failed to fetch category.');
-  }
-  const category = await response.json();
-
-  const totalResponse = await fetch(`${BASE_URL}/categories`);
-  if (!totalResponse.ok) {
-    throw new Error('Failed to fetch total categories.');
-  }
-  const totalCategories = (await totalResponse.json()).length;
-
-  return { category, totalCategories };
-};
-
 export const fetchCategories = async (): Promise<SingleCategory[]> => {
   const response = await fetch(`${BASE_URL}/categories`);
   if (!response.ok) {
@@ -104,13 +81,21 @@ export const fetchCategories = async (): Promise<SingleCategory[]> => {
   return response.json();
 };
 
-export const fetchPartsByCategory = async (
-  category: string
-): Promise<Part[]> => {
+export interface Part {
+  id: string;
+  name: string;
+  price: number;
+  partId: string;
+  category: string;
+  stock: number;
+  customizable: boolean;
+  createdAt: string;
+}
+
+export const fetchParts = async (): Promise<Part[]> => {
   const response = await fetch(`${BASE_URL}/parts`);
   if (!response.ok) {
     throw new Error('Failed to fetch parts.');
   }
-  const parts: Part[] = await response.json();
-  return parts.filter((part) => part.category === category);
+  return response.json();
 };

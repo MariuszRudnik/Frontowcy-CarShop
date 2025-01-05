@@ -1,5 +1,6 @@
-import { Box, Typography, Grid } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import carscreen from '../../screen/car.png';
+import styles from './CreatorStyle.module.scss';
 
 interface Props {
   children?: React.ReactNode;
@@ -12,12 +13,12 @@ const CategoryPage = ({ children }: Props) => {
         Konfigurator kategorii
       </Typography>
 
-      <Grid container spacing={1}>
-        <Box>
-          <img src={carscreen} alt="" style={{ maxWidth: '100%' }} />
-        </Box>
+      <div className={styles.container}>
         <Box>{children}</Box>
-      </Grid>
+        <Box>
+          <img src={carscreen} alt="" className={styles.image} />
+        </Box>
+      </div>
     </Box>
   );
 };

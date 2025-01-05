@@ -15,8 +15,6 @@ function NextAndPrevComponent({ categories }: Props) {
   const index = sortedCategories.findIndex(
     (category) => category.identifier === steepId
   );
-  console.log(sortedCategories);
-
   const handleNext = () => {
     router.navigate({
       to: `/categories/${sortedCategories[index + 1].identifier}`,
@@ -27,10 +25,14 @@ function NextAndPrevComponent({ categories }: Props) {
       to: `/categories/${sortedCategories[index + -1].identifier}`,
     });
   };
+  const handleSummaryOrder = () => {
+    router.navigate({
+      to: '/orderSummary',
+    });
+  };
   return (
     <div className={styles.flexSpaceBetween}>
       <div>
-        {''}
         {index > 0 && (
           <Button variant="contained" onClick={handleBack}>
             Cofnij
@@ -38,9 +40,13 @@ function NextAndPrevComponent({ categories }: Props) {
         )}
       </div>
       <div>
-        {index < sortedCategories.length - 1 && (
+        {index < sortedCategories.length - 1 ? (
           <Button variant="contained" onClick={handleNext}>
             Dalej
+          </Button>
+        ) : (
+          <Button variant="contained" onClick={handleSummaryOrder}>
+            Przejdź do podsumowania
           </Button>
         )}
       </div>
