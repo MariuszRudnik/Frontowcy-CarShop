@@ -2,6 +2,7 @@ import { SingleCategory } from '../../types';
 import { Route } from '../../routes/categories/$steepId.tsx';
 import { Button } from '@mui/material';
 import { useRouter } from '@tanstack/react-router';
+import styles from './CreatorStyle.module.scss';
 
 interface Props {
   categories: SingleCategory[];
@@ -27,8 +28,9 @@ function NextAndPrevComponent({ categories }: Props) {
     });
   };
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+    <div className={styles.flexSpaceBetween}>
       <div>
+        {''}
         {index > 0 && (
           <Button variant="contained" onClick={handleBack}>
             Cofnij
