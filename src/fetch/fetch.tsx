@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { SingleCategory } from '../types';
+import { v4 as uuidv4 } from 'uuid';
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -98,4 +99,35 @@ export const fetchParts = async (): Promise<Part[]> => {
     throw new Error('Failed to fetch parts.');
   }
   return response.json();
+};
+
+export const addOrder = async (
+  firstName: string,
+  lastName: string,
+  email: string,
+  value: number,
+  details: string[]
+): Promise<void> => {
+  const newOrder = {
+    id: uuidv4(),
+    firstName,
+    lastName,
+    email,
+    value,
+    details,
+    status: 'processing',
+    createdAt: new Date().toISOString(),
+  };
+
+  const response = await fetch(`${BASE_URL}/orders`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newOrder),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to add order.');
+  }
 };

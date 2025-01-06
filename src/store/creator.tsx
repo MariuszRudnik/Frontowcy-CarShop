@@ -5,6 +5,7 @@ interface SelectedPartState {
   selectedPartIds: string[];
   toggleSelectedPartId: (id: string) => void;
   getSelectedPartIds: () => string[];
+  reset: () => void;
 }
 
 export const useOrderStore = create<SelectedPartState>()(
@@ -18,7 +19,10 @@ export const useOrderStore = create<SelectedPartState>()(
             : [...state.selectedPartIds, id],
         })),
       getSelectedPartIds: () => get().selectedPartIds,
+
+      reset: () => set({ selectedPartIds: [] }),
     }),
+
     {
       name: 'order-store', // unique name for the localStorage key
     }
