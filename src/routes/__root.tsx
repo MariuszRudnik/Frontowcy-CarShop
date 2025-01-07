@@ -1,7 +1,6 @@
 import React, { Suspense } from 'react';
-import { Outlet, createRootRouteWithContext } from '@tanstack/react-router';
+import { Outlet, createRootRoute } from '@tanstack/react-router';
 import { Navbar } from '../components/Navbar';
-import { QueryClient } from '@tanstack/react-query';
 
 const TanStackRouterDevtools = import.meta.env.DEV
   ? React.lazy(() =>
@@ -11,11 +10,7 @@ const TanStackRouterDevtools = import.meta.env.DEV
     )
   : null;
 
-type RootContext = {
-  queryClient: QueryClient;
-};
-
-export const Route = createRootRouteWithContext<RootContext>()({
+export const Route = createRootRoute({
   component: RootComponent,
 });
 
