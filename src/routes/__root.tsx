@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { Outlet, createRootRoute } from '@tanstack/react-router';
+import { Outlet, createRootRouteWithContext } from '@tanstack/react-router';
 import { Navbar } from '../components/Navbar';
 
 const TanStackRouterDevtools = import.meta.env.DEV
@@ -10,7 +10,7 @@ const TanStackRouterDevtools = import.meta.env.DEV
     )
   : null;
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext()({
   component: RootComponent,
 });
 
