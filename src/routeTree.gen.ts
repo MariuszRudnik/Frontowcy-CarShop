@@ -11,12 +11,19 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as CreatorImport } from './routes/creator'
 import { Route as IndexImport } from './routes/index'
-import { Route as CreatorIndexImport } from './routes/creator/index'
+import { Route as CreatorNewImport } from './routes/creator.new'
+import { Route as CreatorCatNameImport } from './routes/creator.$catName'
 import { Route as CategoriesSteepIdImport } from './routes/categories/$steepId'
-import { Route as CreatorNewIndexImport } from './routes/creator/new/index'
 
 // Create/Update Routes
+
+const CreatorRoute = CreatorImport.update({
+  id: '/creator',
+  path: '/creator',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
@@ -24,21 +31,21 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const CreatorIndexRoute = CreatorIndexImport.update({
-  id: '/creator/',
-  path: '/creator/',
-  getParentRoute: () => rootRoute,
+const CreatorNewRoute = CreatorNewImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => CreatorRoute,
+} as any)
+
+const CreatorCatNameRoute = CreatorCatNameImport.update({
+  id: '/$catName',
+  path: '/$catName',
+  getParentRoute: () => CreatorRoute,
 } as any)
 
 const CategoriesSteepIdRoute = CategoriesSteepIdImport.update({
   id: '/categories/$steepId',
   path: '/categories/$steepId',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const CreatorNewIndexRoute = CreatorNewIndexImport.update({
-  id: '/creator/new/',
-  path: '/creator/new/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -53,6 +60,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/creator': {
+      id: '/creator'
+      path: '/creator'
+      fullPath: '/creator'
+      preLoaderRoute: typeof CreatorImport
+      parentRoute: typeof rootRoute
+    }
     '/categories/$steepId': {
       id: '/categories/$steepId'
       path: '/categories/$steepId'
@@ -60,68 +74,98 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategoriesSteepIdImport
       parentRoute: typeof rootRoute
     }
-    '/creator/': {
-      id: '/creator/'
-      path: '/creator'
-      fullPath: '/creator'
-      preLoaderRoute: typeof CreatorIndexImport
-      parentRoute: typeof rootRoute
+    '/creator/$catName': {
+      id: '/creator/$catName'
+      path: '/$catName'
+      fullPath: '/creator/$catName'
+      preLoaderRoute: typeof CreatorCatNameImport
+      parentRoute: typeof CreatorImport
     }
-    '/creator/new/': {
-      id: '/creator/new/'
-      path: '/creator/new'
+    '/creator/new': {
+      id: '/creator/new'
+      path: '/new'
       fullPath: '/creator/new'
-      preLoaderRoute: typeof CreatorNewIndexImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof CreatorNewImport
+      parentRoute: typeof CreatorImport
     }
   }
 }
 
 // Create and export the route tree
 
+interface CreatorRouteChildren {
+  CreatorCatNameRoute: typeof CreatorCatNameRoute
+  CreatorNewRoute: typeof CreatorNewRoute
+}
+
+const CreatorRouteChildren: CreatorRouteChildren = {
+  CreatorCatNameRoute: CreatorCatNameRoute,
+  CreatorNewRoute: CreatorNewRoute,
+}
+
+const CreatorRouteWithChildren =
+  CreatorRoute._addFileChildren(CreatorRouteChildren)
+
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/creator': typeof CreatorRouteWithChildren
   '/categories/$steepId': typeof CategoriesSteepIdRoute
-  '/creator': typeof CreatorIndexRoute
-  '/creator/new': typeof CreatorNewIndexRoute
+  '/creator/$catName': typeof CreatorCatNameRoute
+  '/creator/new': typeof CreatorNewRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/creator': typeof CreatorRouteWithChildren
   '/categories/$steepId': typeof CategoriesSteepIdRoute
-  '/creator': typeof CreatorIndexRoute
-  '/creator/new': typeof CreatorNewIndexRoute
+  '/creator/$catName': typeof CreatorCatNameRoute
+  '/creator/new': typeof CreatorNewRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/creator': typeof CreatorRouteWithChildren
   '/categories/$steepId': typeof CategoriesSteepIdRoute
-  '/creator/': typeof CreatorIndexRoute
-  '/creator/new/': typeof CreatorNewIndexRoute
+  '/creator/$catName': typeof CreatorCatNameRoute
+  '/creator/new': typeof CreatorNewRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/categories/$steepId' | '/creator' | '/creator/new'
+  fullPaths:
+    | '/'
+    | '/creator'
+    | '/categories/$steepId'
+    | '/creator/$catName'
+    | '/creator/new'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/categories/$steepId' | '/creator' | '/creator/new'
-  id: '__root__' | '/' | '/categories/$steepId' | '/creator/' | '/creator/new/'
+  to:
+    | '/'
+    | '/creator'
+    | '/categories/$steepId'
+    | '/creator/$catName'
+    | '/creator/new'
+  id:
+    | '__root__'
+    | '/'
+    | '/creator'
+    | '/categories/$steepId'
+    | '/creator/$catName'
+    | '/creator/new'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CreatorRoute: typeof CreatorRouteWithChildren
   CategoriesSteepIdRoute: typeof CategoriesSteepIdRoute
-  CreatorIndexRoute: typeof CreatorIndexRoute
-  CreatorNewIndexRoute: typeof CreatorNewIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CreatorRoute: CreatorRouteWithChildren,
   CategoriesSteepIdRoute: CategoriesSteepIdRoute,
-  CreatorIndexRoute: CreatorIndexRoute,
-  CreatorNewIndexRoute: CreatorNewIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -135,22 +179,30 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/categories/$steepId",
-        "/creator/",
-        "/creator/new/"
+        "/creator",
+        "/categories/$steepId"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
+    "/creator": {
+      "filePath": "creator.tsx",
+      "children": [
+        "/creator/$catName",
+        "/creator/new"
+      ]
+    },
     "/categories/$steepId": {
       "filePath": "categories/$steepId.tsx"
     },
-    "/creator/": {
-      "filePath": "creator/index.tsx"
+    "/creator/$catName": {
+      "filePath": "creator.$catName.tsx",
+      "parent": "/creator"
     },
-    "/creator/new/": {
-      "filePath": "creator/new/index.tsx"
+    "/creator/new": {
+      "filePath": "creator.new.tsx",
+      "parent": "/creator"
     }
   }
 }
