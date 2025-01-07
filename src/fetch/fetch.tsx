@@ -1,4 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
+import { SingleCategory } from '../types';
+import { v4 as uuidv4 } from 'uuid';
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -36,7 +38,7 @@ export const useCategory = (id: string) => {
   });
 };
 
-interface Part {
+export interface Part {
   id: string;
   name: string;
   price: number;
@@ -72,25 +74,60 @@ interface Category {
   description: string;
 }
 
-interface CategoryResponse {
-  category: Category;
-  totalCategories: number;
+export const fetchCategories = async (): Promise<SingleCategory[]> => {
+  const response = await fetch(`${BASE_URL}/categories`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch categories.');
+  }
+  return response.json();
+};
+
+export interface Part {
+  id: string;
+  name: string;
+  price: number;
+  partId: string;
+  category: string;
+  stock: number;
+  customizable: boolean;
+  createdAt: string;
 }
 
-export const fetchCategory = async (
-  identifier: string
-): Promise<CategoryResponse> => {
-  const response = await fetch(`${BASE_URL}/categories/${identifier}`);
+export const fetchParts = async (): Promise<Part[]> => {
+  const response = await fetch(`${BASE_URL}/parts`);
   if (!response.ok) {
-    throw new Error('Failed to fetch category.');
+    throw new Error('Failed to fetch parts.');
   }
-  const category = await response.json();
+  return response.json();
+};
 
-  const totalResponse = await fetch(`${BASE_URL}/categories`);
-  if (!totalResponse.ok) {
-    throw new Error('Failed to fetch total categories.');
+export const addOrder = async (
+  firstName: string,
+  lastName: string,
+  email: string,
+  value: number,
+  details: string[]
+): Promise<void> => {
+  const newOrder = {
+    id: uuidv4(),
+    firstName,
+    lastName,
+    email,
+    value,
+    details,
+    status: 'processing',
+    createdAt: new Date().toISOString(),
+  };
+
+  const response = await fetch(`${BASE_URL}/orders`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newOrder),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to add order.');
   }
-  const totalCategories = (await totalResponse.json()).length;
-
-  return { category, totalCategories };
 };

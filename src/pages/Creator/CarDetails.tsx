@@ -1,10 +1,29 @@
 import { Box, Typography, Grid } from '@mui/material';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { partsQuery } from '../../routes/orderSummary/-loader';
+import { useEffect, useState } from 'react';
+import { useOrderStore } from '../../store/creator.tsx';
 
 const CarDetails = () => {
+  const { data } = useSuspenseQuery(partsQuery);
+  const selectedPartIds = useOrderStore((state) => state.getSelectedPartIds());
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    const filteredData = data.filter((part) =>
+      selectedPartIds.includes(part.id)
+    );
+    const price = filteredData.reduce((sum, part) => sum + part.price, 0);
+    setTotalPrice(price);
+  }, [data, selectedPartIds]);
+
   return (
     <Box sx={{ textAlign: 'center', padding: '20px' }}>
       <Typography variant="h4" gutterBottom>
         Model YXZ
+      </Typography>{' '}
+      <Typography variant="h4" gutterBottom>
+        ${totalPrice}
       </Typography>
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs={12} sm={4}>
