@@ -17,6 +17,7 @@ import { Route as OrderSummaryIndexImport } from './routes/orderSummary/index'
 import { Route as CreatorNewImport } from './routes/creator.new'
 import { Route as CreatorCatNameImport } from './routes/creator.$catName'
 import { Route as CategoriesSteepIdImport } from './routes/categories/$steepId'
+import { Route as CreatorAddPartsCategoryImport } from './routes/creator.add-parts.$category'
 
 // Create/Update Routes
 
@@ -54,6 +55,12 @@ const CategoriesSteepIdRoute = CategoriesSteepIdImport.update({
   id: '/categories/$steepId',
   path: '/categories/$steepId',
   getParentRoute: () => rootRoute,
+} as any)
+
+const CreatorAddPartsCategoryRoute = CreatorAddPartsCategoryImport.update({
+  id: '/add-parts/$category',
+  path: '/add-parts/$category',
+  getParentRoute: () => CreatorRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -102,6 +109,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OrderSummaryIndexImport
       parentRoute: typeof rootRoute
     }
+    '/creator/add-parts/$category': {
+      id: '/creator/add-parts/$category'
+      path: '/add-parts/$category'
+      fullPath: '/creator/add-parts/$category'
+      preLoaderRoute: typeof CreatorAddPartsCategoryImport
+      parentRoute: typeof CreatorImport
+    }
   }
 }
 
@@ -110,11 +124,13 @@ declare module '@tanstack/react-router' {
 interface CreatorRouteChildren {
   CreatorCatNameRoute: typeof CreatorCatNameRoute
   CreatorNewRoute: typeof CreatorNewRoute
+  CreatorAddPartsCategoryRoute: typeof CreatorAddPartsCategoryRoute
 }
 
 const CreatorRouteChildren: CreatorRouteChildren = {
   CreatorCatNameRoute: CreatorCatNameRoute,
   CreatorNewRoute: CreatorNewRoute,
+  CreatorAddPartsCategoryRoute: CreatorAddPartsCategoryRoute,
 }
 
 const CreatorRouteWithChildren =
@@ -127,6 +143,7 @@ export interface FileRoutesByFullPath {
   '/creator/$catName': typeof CreatorCatNameRoute
   '/creator/new': typeof CreatorNewRoute
   '/orderSummary': typeof OrderSummaryIndexRoute
+  '/creator/add-parts/$category': typeof CreatorAddPartsCategoryRoute
 }
 
 export interface FileRoutesByTo {
@@ -136,6 +153,7 @@ export interface FileRoutesByTo {
   '/creator/$catName': typeof CreatorCatNameRoute
   '/creator/new': typeof CreatorNewRoute
   '/orderSummary': typeof OrderSummaryIndexRoute
+  '/creator/add-parts/$category': typeof CreatorAddPartsCategoryRoute
 }
 
 export interface FileRoutesById {
@@ -146,6 +164,7 @@ export interface FileRoutesById {
   '/creator/$catName': typeof CreatorCatNameRoute
   '/creator/new': typeof CreatorNewRoute
   '/orderSummary/': typeof OrderSummaryIndexRoute
+  '/creator/add-parts/$category': typeof CreatorAddPartsCategoryRoute
 }
 
 export interface FileRouteTypes {
@@ -157,6 +176,7 @@ export interface FileRouteTypes {
     | '/creator/$catName'
     | '/creator/new'
     | '/orderSummary'
+    | '/creator/add-parts/$category'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -165,6 +185,7 @@ export interface FileRouteTypes {
     | '/creator/$catName'
     | '/creator/new'
     | '/orderSummary'
+    | '/creator/add-parts/$category'
   id:
     | '__root__'
     | '/'
@@ -173,6 +194,7 @@ export interface FileRouteTypes {
     | '/creator/$catName'
     | '/creator/new'
     | '/orderSummary/'
+    | '/creator/add-parts/$category'
   fileRoutesById: FileRoutesById
 }
 
@@ -213,7 +235,8 @@ export const routeTree = rootRoute
       "filePath": "creator.tsx",
       "children": [
         "/creator/$catName",
-        "/creator/new"
+        "/creator/new",
+        "/creator/add-parts/$category"
       ]
     },
     "/categories/$steepId": {
@@ -229,6 +252,10 @@ export const routeTree = rootRoute
     },
     "/orderSummary/": {
       "filePath": "orderSummary/index.tsx"
+    },
+    "/creator/add-parts/$category": {
+      "filePath": "creator.add-parts.$category.tsx",
+      "parent": "/creator"
     }
   }
 }

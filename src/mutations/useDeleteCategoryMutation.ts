@@ -13,7 +13,6 @@ export const useDeleteCategoryMutation = () => {
       });
     },
     onSuccess: () => {
-      console.log('detete');
       queryClient.invalidateQueries({
         queryKey: ['categories'],
       });

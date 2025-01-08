@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
-import { createFileRoute, useNavigate } from '@tanstack/react-router';
+import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
 import { partsOptions } from '../queries/parts';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import DeleteIcon from '@mui/icons-material/Delete';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import {
   Button,
   Paper,
@@ -74,6 +75,19 @@ const SingleCategory = () => {
               </TableCell>
             </TableRow>
           ))}
+
+          <Link
+            to="/creator/add-parts/$category"
+            params={{ category: catName }}
+          >
+            <Button
+              variant="outlined"
+              startIcon={<AddCircleIcon />}
+              sx={{ margin: '10px' }}
+            >
+              Dodaj element
+            </Button>
+          </Link>
         </TableBody>
       </Table>
     </TableContainer>

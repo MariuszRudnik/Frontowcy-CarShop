@@ -18,3 +18,15 @@ export type Singleparts = {
   customizable: boolean;
   createdAt: string;
 };
+
+export type Part = {
+  id: string;
+  name: string;
+  price: number;
+  partId: string;
+  category: string;
+  stock: number;
+  customizable: boolean;
+  createdAt: string;
+};
+export type PartDto = Omit<Part, 'id'>;
