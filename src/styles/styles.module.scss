@@ -12,3 +12,9 @@
   max-width: 500px;
   gap: 1rem;
 }
+.table {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: white;
+}

@@ -25,12 +25,12 @@
       "createdAt": "2025-01-03T12:00:00Z"
     },
     {
-      "id": "73c9",
-      "name": "hhh",
-      "description": "hhh",
-      "identifier": "hhh",
+      "id": "1d8c",
+      "name": "kot",
+      "description": "lisa",
+      "identifier": "kici",
       "position": 4,
-      "createdAt": "2025-01-08T11:59:07.509Z"
+      "createdAt": "2025-01-08T14:54:26.416Z"
     }
   ],
   "parts": [
@@ -83,76 +83,6 @@
       "stock": 2,
       "customizable": true,
       "createdAt": "2025-01-03T11:00:00Z"
-    },
-    {
-      "id": "941a",
-      "name": "ddd",
-      "partId": "dd",
-      "price": 11,
-      "stock": 1111,
-      "category": "basic",
-      "customizable": true,
-      "createdAt": "2025-01-08T11:44:35.001Z"
-    },
-    {
-      "id": "21f0",
-      "name": "22",
-      "partId": "222",
-      "price": 22,
-      "stock": 22,
-      "category": "basic",
-      "customizable": true,
-      "createdAt": "2025-01-08T11:46:13.125Z"
-    },
-    {
-      "id": "8434",
-      "name": "33",
-      "partId": "333",
-      "price": 3,
-      "stock": 33,
-      "category": "basic",
-      "customizable": true,
-      "createdAt": "2025-01-08T11:54:09.283Z"
-    },
-    {
-      "id": "c4a2",
-      "name": "444",
-      "partId": "444",
-      "price": 4,
-      "stock": 44,
-      "category": "basic",
-      "customizable": true,
-      "createdAt": "2025-01-08T11:54:29.857Z"
-    },
-    {
-      "id": "b9ea",
-      "name": "55",
-      "partId": "55",
-      "price": 55,
-      "stock": 55,
-      "category": "basic",
-      "customizable": true,
-      "createdAt": "2025-01-08T11:55:20.685Z"
-    },
-    {
-      "id": "d0c0",
-      "name": "66",
-      "partId": "66",
-      "price": 666,
-      "stock": 66,
-      "category": "basic",
-      "customizable": false,
-      "createdAt": "2025-01-08T11:58:19.910Z"
-    },
-    {
-      "id": "df16",
-      "name": "111",
-      "partId": "11",
-      "price": 11,
-      "stock": 1,
-      "category": "hhh",
-      "customizable": true,
-      "createdAt": "2025-01-08T11:59:13.394Z"
     }
   ],
   "orders": [
