@@ -17,6 +17,7 @@ export const AutoCreator = () => {
               to="/creator/$catName"
               params={{ catName: identifier }}
               style={{ textDecoration: 'none', color: 'inherit' }}
+              key={id}
             >
               <div className={styles.singleCategory} key={id}>
                 <h2>{name}</h2>

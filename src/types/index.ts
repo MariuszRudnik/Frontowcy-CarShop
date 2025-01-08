@@ -6,6 +6,7 @@ export type SingleCategory = {
   description: string;
   createdAt: string;
 };
+export type SingleCategoryDto = Omit<SingleCategory, 'id'>;
 
 export type Singleparts = {
   id: string;

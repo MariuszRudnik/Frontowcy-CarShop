@@ -1,9 +1,10 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { useEffect } from 'react';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { partsOptions } from '../queries/parts';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {
-  IconButton,
+  Button,
   Paper,
   Table,
   TableBody,
@@ -12,11 +13,26 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
+import { useDeleteCategoryMutation } from '../mutations/useDeleteCategoryMutation';
+import { categoryOptions } from '../queries/category';
 
 const SingleCategory = () => {
   const { catName } = Route.useParams();
   const { data } = useSuspenseQuery(partsOptions(catName));
-  console.log(data);
+  const { data: catData } = useSuspenseQuery(categoryOptions);
+  const { mutate, isSuccess } = useDeleteCategoryMutation();
+  const navigate = useNavigate();
+
+  const handleDelete = () => {
+    const CategoryId = catData.filter((item) => item.identifier === catName);
+    mutate(CategoryId[0].id);
+  };
+
+  useEffect(() => {
+    if (!isSuccess) return;
+    navigate({ to: '/creator' });
+  }, [isSuccess, navigate]);
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -26,7 +42,15 @@ const SingleCategory = () => {
             <TableCell align="right">cena</TableCell>
             <TableCell align="right">Ilość sztuk</TableCell>
             <TableCell align="right">personalizowalny</TableCell>
-            <TableCell align="right"></TableCell>
+            <TableCell align="right">
+              <Button
+                variant="contained"
+                endIcon={<DeleteIcon />}
+                onClick={handleDelete}
+              >
+                Usuń kategorie
+              </Button>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -44,9 +68,9 @@ const SingleCategory = () => {
                 {row.customizable ? 'Tak' : 'Nie'}
               </TableCell>
               <TableCell align="right">
-                <IconButton aria-label="delete" size="large">
-                  <DeleteIcon fontSize="inherit" />
-                </IconButton>
+                <Button variant="outlined" endIcon={<DeleteIcon />}>
+                  Usuń element
+                </Button>
               </TableCell>
             </TableRow>
           ))}
