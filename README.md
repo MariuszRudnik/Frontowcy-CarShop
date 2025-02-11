@@ -1,5 +1,5 @@
 # CarShop - Kreator Zamówień Samochodów
-
+![s4](3.png)
 ## Opis projektu
 
 CarShop to aplikacja webowa pozwalająca na skonfigurowanie i złożenie zamówienia na samochód według indywidualnych preferencji użytkownika. Projekt został stworzony jako ćwiczenie  mające na celu wykorzystanie narzędzi takich jak React, Material UI oraz json-server.
@@ -40,11 +40,46 @@ CarShop to aplikacja webowa pozwalająca na skonfigurowanie i złożenie zamówi
 - **Husky** - Narzędzie do automatyzacji formatowania kodu.
 
 ---
+## Instalacja
 
-## Instalacja i uruchomienie
+1. Sklonuj repozytorium:
+
+   ```bash
+   git clone https://github.com/MariuszRudnik/Frontowcy-CarShop
+   ```
+
+   2.Zmień nazwę pliku .env.template na .env:
+
+   ```bash
+   mv .env.template .env
+   ```
+
+2. Przejdź do katalogu projektu:
+   ```bash
+   cd Frontowcy-CarShop
+   ```
+3. Zainstaluj zależności:
+   ```bash
+   pnpm install
+   ```
+4. Uruchom `json-server`:
+   ```bash
+   json-server --watch db.json
+   ```
+5. Uruchom aplikację:
+   ```bash
+   pnpm start dev
+   ```
+
+![s2](1.png)
+![s3](2.png)
+![s4](3.png)
+
+
 
 ### Wymagania wstępne:
 - Node.js w wersji 18 lub nowszej.
 - Zainstalowane narzędzie  `npm`, `pnpm` lub `yarn`.
+
 
 
