@@ -35,7 +35,7 @@ CarShop to aplikacja webowa pozwalająca na skonfigurowanie i złożenie zamówi
 - **React** - Biblioteka do budowy interfejsów użytkownika.
 - **json-server** - Narzędzie do symulacji API.
 - **Material UI** - Biblioteka komponentów UI.
-- ** Zustand** - Zarządzanie stanem aplikacji.
+- **Zustand** - Zarządzanie stanem aplikacji.
 - **React Query** - Optymalne zarządzanie danymi i ich pobieranie.
 - **Husky** - Narzędzie do automatyzacji formatowania kodu.
 
